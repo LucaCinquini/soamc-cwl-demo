@@ -9,6 +9,7 @@ hints:
     secrets:
       - aws_access_key_id
       - aws_secret_access_key
+      - aws_session_token
   DockerRequirement:
     dockerPull: pymonger/aws-cli
 requirements:
@@ -18,9 +19,10 @@ requirements:
         entry: |
           [default]
           output = json
-          region = us-west-2
+          region = us-gov-west-1
           aws_access_key_id = $(inputs.aws_access_key_id)
           aws_secret_access_key = $(inputs.aws_secret_access_key)
+          aws_session_token = $(inputs.aws_session_token)
 
 # the following baseCommand and arguments work on docker but not singularity
 #baseCommand: [aws]
@@ -40,6 +42,7 @@ arguments:
 inputs:
   aws_access_key_id: string
   aws_secret_access_key: string
+  aws_session_token: string
   dataset_dir:
     type: Directory
     # uncomment these if using baseCommand: [aws]

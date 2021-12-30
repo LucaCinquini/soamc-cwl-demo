@@ -9,6 +9,7 @@ hints:
     secrets:
       - workflow_aws_access_key_id
       - workflow_aws_secret_access_key
+      - workflow_aws_session_token
 inputs:
   workflow_input_url: string
   workflow_input_file: string
@@ -17,6 +18,7 @@ inputs:
   workflow_max_sleep: int
   workflow_aws_access_key_id: string
   workflow_aws_secret_access_key: string
+  workflow_aws_session_token: string
   workflow_base_dataset_url: string
 
 outputs:
@@ -70,6 +72,7 @@ steps:
     in:
       aws_access_key_id: workflow_aws_access_key_id
       aws_secret_access_key: workflow_aws_secret_access_key
+      aws_session_token: workflow_aws_session_token
       dataset_dir: run-pge/dataset_dir
       base_dataset_url: workflow_base_dataset_url
     out:
