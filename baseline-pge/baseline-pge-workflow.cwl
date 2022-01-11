@@ -22,27 +22,12 @@ inputs:
   workflow_base_dataset_url: string
 
 outputs:
-  final_dataset_dir:
-    type: Directory
-    outputSource: run-pge/dataset_dir
   stdout_stage-in:
     type: File
     outputSource: stage-in/stdout_file
   stderr_stage-in:
     type: File
     outputSource: stage-in/stderr_file
-  stdout_run-pge:
-    type: File
-    outputSource: run-pge/stdout_file
-  stderr_run-pge:
-    type: File
-    outputSource: run-pge/stderr_file
-  stdout_stage-out:
-    type: File
-    outputSource: stage-out/stdout_file
-  stderr_stage-out:
-    type: File
-    outputSource: stage-out/stderr_file
 
 steps:
   stage-in:
