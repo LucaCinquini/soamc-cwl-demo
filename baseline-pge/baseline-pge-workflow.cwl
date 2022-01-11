@@ -36,9 +36,6 @@ steps:
       input_url: workflow_input_url
       input_file: workflow_input_file
     out:
-    - localized_file:
-        type: File
-        outputBinding:
-          glob: $(inputs.input_file)
+    - localized_file
     - stdout_file
     - stderr_file
