@@ -4,8 +4,8 @@ cwlVersion: v1.0
 class: CommandLineTool
 hints:
   DockerRequirement:
-    dockerPull: pymonger/baseline-pge:latest
-baseCommand: [/home/ops/verdi/ops/baseline_pge/dumby_landsat_cwl.sh]
+    dockerPull: lucacinquini/baseline-pge:latest
+baseCommand: [/home/ops/verdi/ops/baseline_pge/dumby_landsat_cwl2.sh]
 requirements:
   InitialWorkDirRequirement:
     listing:
@@ -31,7 +31,7 @@ outputs:
   dataset_dir:
     type: Directory
     outputBinding:
-      glob: "dumby-product-*"
+      glob: "dumby-product-20210622191038567000_1"
   stdout_file:
     type: stdout
   stderr_file:
