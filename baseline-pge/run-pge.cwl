@@ -28,10 +28,12 @@ inputs:
     inputBinding:
       position: 4
 outputs:
-  dataset_dir:
-    type: Directory
+  dataset_dirs:
+    type: 
+      type: array
+      items: Directory
     outputBinding:
-      glob: "dumby-product-20210622191038567000_1"
+      glob: "dumby-product-*"
   stdout_file:
     type: stdout
   stderr_file:
