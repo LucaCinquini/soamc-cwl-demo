@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-runner
 
-cwlVersion: v1.0
+cwlVersion: v1.1
 class: CommandLineTool
 hints:
   DockerRequirement:
@@ -28,10 +28,8 @@ inputs:
     inputBinding:
       position: 4
 outputs:
-  dataset_dirs:
-    type: 
-      type: array
-      items: Directory
+  dataset_dir:
+    type: Directory
     outputBinding:
       glob: "dumby-product-*"
   stdout_file:

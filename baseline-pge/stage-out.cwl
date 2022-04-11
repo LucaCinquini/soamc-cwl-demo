@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-runner
 
-cwlVersion: v1.0
+cwlVersion: v1.1
 class: CommandLineTool
 $namespaces:
   cwltool: http://commonwl.org/cwltool#
@@ -13,13 +13,15 @@ hints:
   DockerRequirement:
     dockerPull: pymonger/aws-cli
 requirements:
+  NetworkAccess:
+    networkAccess: true
   InitialWorkDirRequirement:
     listing:
       - entryname: .aws/credentials
         entry: |
           [default]
           output = json
-          region = us-gov-west-1
+          region = us-west-2
           aws_access_key_id = $(inputs.aws_access_key_id)
           aws_secret_access_key = $(inputs.aws_secret_access_key)
           aws_session_token = $(inputs.aws_session_token)

@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-runner
 
-cwlVersion: v1.0
+cwlVersion: v1.1
 class: Workflow
 $namespaces:
   cwltool: http://commonwl.org/cwltool#
@@ -10,11 +10,6 @@ hints:
       - workflow_aws_access_key_id
       - workflow_aws_secret_access_key
       - workflow_aws_session_token
-
-requirements:
-  SubworkflowFeatureRequirement: {}
-  ScatterFeatureRequirement: {}
-
 inputs:
   workflow_input_url: string
   workflow_input_file: string
@@ -27,11 +22,9 @@ inputs:
   workflow_base_dataset_url: string
 
 outputs:
-  final_dataset_dirs:
-    type: 
-      type: array
-      items: Directory
-    outputSource: run-pge/dataset_dirs
+  final_dataset_dir:
+    type: Directory
+    outputSource: run-pge/dataset_dir
   stdout_stage-in:
     type: File
     outputSource: stage-in/stdout_file
@@ -44,6 +37,12 @@ outputs:
   stderr_run-pge:
     type: File
     outputSource: run-pge/stderr_file
+  stdout_stage-out:
+    type: File
+    outputSource: stage-out/stdout_file
+  stderr_stage-out:
+    type: File
+    outputSource: stage-out/stderr_file
 
 steps:
   stage-in:
@@ -64,21 +63,18 @@ steps:
       min_sleep: workflow_min_sleep
       max_sleep: workflow_max_sleep
     out:
-    - dataset_dirs
+    - dataset_dir
     - stdout_file
     - stderr_file
 
   stage-out:
     run: stage-out.cwl
-    scatter: dataset_dir
     in:
       aws_access_key_id: workflow_aws_access_key_id
       aws_secret_access_key: workflow_aws_secret_access_key
       aws_session_token: workflow_aws_session_token
-      dataset_dir: run-pge/dataset_dirs
+      dataset_dir: run-pge/dataset_dir
       base_dataset_url: workflow_base_dataset_url
     out:
     - stdout_file
     - stderr_file
-
-

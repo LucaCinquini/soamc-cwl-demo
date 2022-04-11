@@ -39,21 +39,15 @@ let sleep=`expr $[ $min_sleep + $[ RANDOM % ( $max_sleep - $min_sleep ) ]]`
 PID=$!
 sleep $sleep
 kill ${PID}
-
+prod=$1
+mkdir $prod
+tiff=$4
+cp $tiff $prod/
 #Remove the landsat input product
 rm */*.met.json
 rm */*.dataset.json
-tiff=$4
 tiff=`basename ${tiff}`
-
-items=("1" "2" "3")
-for item in ${items[*]}; do
-  prod=$1_$item
-  mkdir $prod
-  cp $tiff $prod/
-  $BASE_PATH/create_dataset_landsat.py $prod $VERSION
-  $BASE_PATH/create_metadata.py $prod $prod/$tiff $sleep
-  convert -size 500x500 $prod/$tiff $prod/$prod.browse.png
-  convert -resize 250x250 $prod/$prod.browse.png $prod/$prod.browse_small.png
-done
-
+$BASE_PATH/create_dataset_landsat.py $prod $VERSION
+$BASE_PATH/create_metadata.py $prod $prod/$tiff $sleep
+# convert -size 500x500 $prod/$tiff $prod/$prod.browse.png
+# convert -resize 250x250 $prod/$prod.browse.png $prod/$prod.browse_small.png
