@@ -46,7 +46,7 @@ spec:
           - "--workflow_aws_secret_access_key"
           - "$(aws_secret_access_key)"
           - "--workflow_aws_session_token"
-          - "$(aws_aws_session_token)"
+          - "$(aws_session_token)"
           - "--workflow_base_dataset_url"
           - "s3://unity-sps/soamc-demo"
         volumeMounts:
